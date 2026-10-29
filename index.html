@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saad Kakar FreeApps - Microsoft Store Style</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body class="bg-[#121212] text-white min-h-screen font-sans flex flex-col justify-between">
 
@@ -20,6 +22,9 @@
             <div class="relative">
                 <input type="text" id="searchInput" oninput="filterApps()" placeholder="Search apps..." class="w-32 sm:w-64 bg-[#2b2b2b] border border-[#3a3a3a] rounded-lg px-3 py-1.5 text-xs sm:text-sm focus:outline-none focus:border-emerald-500 placeholder-gray-400">
             </div>
+
+            <!-- Share / QR Code Button -->
+            <button onclick="showShareModal()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-bold shadow-lg transition" title="Share Website QR">🔗 Share</button>
 
             <!-- KAKAR Admin Button -->
             <button onclick="showAdminMenu()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-bold shadow-lg transition">KAKAR</button>
@@ -52,6 +57,22 @@
                 <p class="text-gray-400 text-sm mt-1">The requested content is not available or search is incorrect.</p>
             </div>
         </main>
+    </div>
+
+    <!-- Share & QR Code Modal -->
+    <div id="shareModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
+        <div class="bg-[#1f1f1f] border border-[#333] rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl relative">
+            <h3 class="text-lg font-bold mb-2">Share Website</h3>
+            <p class="text-gray-400 text-xs mb-4">Scan this QR code with any mobile camera to open this website instantly!</p>
+            
+            <!-- QR Code Container -->
+            <div class="bg-white p-4 rounded-xl inline-block mb-4 shadow-inner" id="qrcode"></div>
+
+            <div class="space-y-2">
+                <button onclick="copySiteLink()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition">📋 Copy Website Link</button>
+                <button onclick="closeShareModal()" class="w-full py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg text-xs font-semibold">Close</button>
+            </div>
+        </div>
     </div>
 
     <!-- Admin Choices Modal with Dropdown -->
@@ -168,11 +189,12 @@
     <script>
         /* ========================================================
            KAKAR ADMIN PASSWORD CONFIGURATION
-           Yahan apna admin password asani se change kar sakte hain:
+           Yahan apna naya password set kar diya gaya hai:
         ======================================================== */
-        const KAKAR_ADMIN_PASSWORD = "1234"; 
+        const KAKAR_ADMIN_PASSWORD = "Kakar007@"; 
 
         let currentTimer = null;
+        let qrInitialized = false;
 
         function getApps() {
             return JSON.parse(localStorage.getItem('saad_apps') || '[]');
@@ -244,6 +266,34 @@
         function closeDownloadModal() {
             if (currentTimer) clearInterval(currentTimer);
             document.getElementById('downloadModal').classList.add('hidden');
+        }
+
+        /* ========================================================
+           SHARE & QR CODE FUNCTIONS
+        ======================================================== */
+        function showShareModal() {
+            document.getElementById('shareModal').classList.remove('hidden');
+            if (!qrInitialized) {
+                document.getElementById('qrcode').innerHTML = "";
+                new QRCode(document.getElementById("qrcode"), {
+                    text: window.location.href,
+                    width: 150,
+                    height: 150,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                qrInitialized = true;
+            }
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareModal').classList.add('hidden');
+        }
+
+        function copySiteLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('Website link copied to clipboard!');
         }
 
         /* ========================================================
@@ -389,9 +439,6 @@
             }
         }
 
-        /* ========================================================
-           REAL-TIME LIVE SEARCH FUNCTION
-        ======================================================== */
         function filterApps() {
             let query = document.getElementById('searchInput').value.toLowerCase().trim();
             let apps = getApps();
