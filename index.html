@@ -16,9 +16,6 @@
         </div>
 
         <div class="flex items-center space-x-3">
-            <!-- Google Translate Dropdown Widget -->
-            <div id="google_translate_element"></div>
-
             <!-- Search Bar -->
             <div class="hidden sm:block w-64">
                 <input type="text" id="searchInput" oninput="filterApps()" placeholder="Search apps, tools..." class="w-full bg-[#2b2b2b] border border-[#3a3a3a] rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-500 placeholder-gray-400">
@@ -167,18 +164,6 @@
         </div>
     </div>
 
-    <!-- Google Translate Script -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,ur,ar,hi,es,fr',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <!-- Main JS Logic -->
     <script>
         let currentTimer = null;
@@ -272,7 +257,7 @@
             const action = document.getElementById('adminActionSelect').value;
             closeAdminModal();
             if (action === 'upload') {
-                document.getElementById('modalTitleinnerText = "Upload New File / App"');
+                document.getElementById('modalTitle').innerText = "Upload New File / App";
                 document.getElementById('addAppForm').reset();
                 document.getElementById('addModal').classList.remove('hidden');
             } else if (action === 'edit') {
@@ -340,7 +325,7 @@
                 reader.readAsDataURL(file);
             } else {
                 if (existingIndex !== -1) {
-                    appData.image = apps[existingIndex].image; // Keep old image if not updated
+                    appData.image = apps[existingIndex].image;
                 }
                 commitAppSave(appData, existingIndex, apps);
             }
@@ -348,10 +333,10 @@
 
         function commitAppSave(appData, existingIndex, apps) {
             if (existingIndex !== -1) {
-                apps[existingIndex] = appData; // Update existing
+                apps[existingIndex] = appData;
                 alert('App successfully updated!');
             } else {
-                apps.unshift(appData); // Add new
+                apps.unshift(appData);
                 alert('App successfully added!');
             }
             localStorage.setItem('saad_apps', JSON.stringify(apps));
