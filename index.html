@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saad Kakar Paid Apps Hub - Free Mobile Apps & Tools</title>
+    <title>Saad Kakar Paid Apps - Free Mobile Apps & Tools</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -34,7 +34,7 @@
             <div class="flex items-center space-x-3">
                 <span class="text-3xl">🚀</span>
                 <div>
-                    <h1 class="font-bold text-lg leading-tight app-title">Saad Kakar Paid Apps Hub</h1>
+                    <h1 class="font-bold text-lg leading-tight app-title">Saad Kakar Paid Apps</h1>
                     <p class="text-xs text-slate-500 dark:text-slate-400 app-subtitle">Free Mobile Apps & Pro Tools</p>
                 </div>
             </div>
@@ -63,6 +63,13 @@
         </div>
     </header>
 
+    <!-- Top Advertisement Banner Box -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-xl p-3 text-center text-xs text-slate-400 border border-dashed border-slate-300 dark:border-slate-700">
+            <span>Advertisement Space (Paste your Ad code here)</span>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Hero Section -->
@@ -71,7 +78,7 @@
                 Discover & Download Free Mobile Apps
             </h2>
             <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base hero-desc">
-                Your trusted platform for secure APKs, utilities, pro tools, and essential documents curated by Kakar.
+                Your trusted platform for secure APKs, utilities, pro tools, and essential documents curated by Saad Kakar.
             </p>
         </div>
 
@@ -101,14 +108,21 @@
         <!-- Empty State -->
         <div id="emptyState" class="hidden text-center py-16">
             <span class="text-5xl mb-3 block">📂</span>
-            <p class="text-slate-500 dark:text-slate-400 font-medium empty-text">No apps found matching your search.</p>
+            <p class="text-slate-500 dark:text-slate-400 font-medium empty-text">No apps found. Click '+ Add App' to add your first app!</p>
         </div>
     </main>
 
+    <!-- Footer Advertisement Box -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+        <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-xl p-3 text-center text-xs text-slate-400 border border-dashed border-slate-300 dark:border-slate-700">
+            <span>Footer Advertisement Space</span>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="mt-20 border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
-        <p class="footer-text">© 2026 Kakar Apps Hub. All rights reserved. Built with ❤️ for free sharing.</p>
-        <button onclick="openContactModal()" class="mt-2 text-blue-500 hover:underline sm:hidden contact-btn-text">Contact Kakar</button>
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
+        <p class="footer-text">© 2026 Saad Kakar Paid Apps. All rights reserved. Built with ❤️ for free sharing.</p>
+        <button onclick="openContactModal()" class="mt-2 text-blue-500 hover:underline sm:hidden contact-btn-text">Contact Saad Kakar</button>
     </footer>
 
     <!-- Add App Modal -->
@@ -121,7 +135,7 @@
             <form id="addAppForm" onsubmit="saveNewApp(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold mb-1 label-app-name">App / Document Name</label>
-                    <input type="text" id="appName" required placeholder="e.g. Pro PDF Reader" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" id="appName" required placeholder="e.g. Temple Run 2" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
@@ -135,20 +149,20 @@
                     </div>
                     <div>
                         <label class="block text-xs font-semibold mb-1 label-version">Version / Size</label>
-                        <input type="text" id="appVersion" required placeholder="v2.1 (15 MB)" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="text" id="appVersion" required placeholder="v1.0 (80 MB)" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold mb-1 label-icon">Icon Emoji</label>
-                    <input type="text" id="appIcon" required placeholder="📱 or 📄" value="📱" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <label class="block text-xs font-semibold mb-1 label-icon">Icon Image URL or Emoji</label>
+                    <input type="text" id="appIcon" required placeholder="Paste image link or emoji" value="🎮" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold mb-1 label-url">Download / File URL</label>
-                    <input type="url" id="appUrl" required placeholder="https://example.com/download" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="url" id="appUrl" required placeholder="Google Drive Link" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold mb-1 label-desc">Description</label>
-                    <textarea id="appDesc" rows="3" required placeholder="Short description of the app or document..." class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <textarea id="appDesc" rows="3" required placeholder="Short description..." class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                 </div>
                 <div class="flex justify-end space-x-3 pt-2">
                     <button type="button" onclick="closeAddModal()" class="px-4 py-2 text-xs font-semibold rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 transition btn-cancel">Cancel</button>
@@ -162,7 +176,7 @@
     <div id="contactModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white dark:bg-cardBg rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold modal-contact-title">Contact Kakar</h3>
+                <h3 class="text-lg font-bold modal-contact-title">Contact Saad Kakar</h3>
                 <button onclick="closeContactModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xl font-bold">×</button>
             </div>
             <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 modal-contact-desc">Have a question or want to request an app? Send a message directly.</p>
@@ -188,41 +202,35 @@
         let currentLang = 'en';
         let currentCategory = 'all';
 
-        // Default Sample Apps
-        let apps = JSON.parse(localStorage.getItem('kakar_apps')) || [
-            { id: 1, name: 'Kakar Secure VPN Pro', category: 'Tools', version: 'v3.2 (18 MB)', icon: '🛡️', url: '#', desc: 'High speed secure VPN proxy for safe browsing.' },
-            { id: 2, name: 'Speedy PDF Scanner', category: 'Documents', version: 'v1.5 (24 MB)', icon: '📄', url: '#', desc: 'Scan documents, convert to PDF instantly.' },
-            { id: 3, name: 'Cyber Neon Racing 3D', category: 'Games', version: 'v1.0 (85 MB)', icon: '🏎️', url: '#', desc: 'High octane futuristic street racing game.' },
-            { id: 4, name: 'TaskMaster Pro', category: 'Productivity', version: 'v2.0 (12 MB)', icon: '⚡', url: '#', desc: 'Boost your daily routine and manage tasks effortlessly.' }
-        ];
+        let apps = JSON.parse(localStorage.getItem('kakar_apps')) || [];
 
         const translations = {
             en: {
-                appTitle: "Kakar Apps Hub",
+                appTitle: "Saad Kakar Paid Apps",
                 appSubtitle: "Free Mobile Apps & Pro Tools",
                 langBtnText: "اردو",
                 contactBtn: "Contact",
                 addAppBtn: "+ Add App",
                 heroTitle: "Discover & Download Free Mobile Apps",
-                heroDesc: "Your trusted platform for secure APKs, utilities, pro tools, and essential documents curated by Kakar.",
+                heroDesc: "Your trusted platform for secure APKs, utilities, pro tools, and essential documents curated by Saad Kakar.",
                 searchPlaceholder: "Search apps, tools...",
                 catAll: "All",
                 catTools: "Tools",
                 catGames: "Games",
                 catProd: "Productivity",
                 catDocs: "Documents",
-                emptyText: "No apps found matching your search.",
-                footer: "© 2026 Kakar Apps Hub. All rights reserved. Built with ❤️ for free sharing.",
+                emptyText: "No apps found. Click '+ Add App' to add your first app!",
+                footer: "© 2026 Saad Kakar Paid Apps. All rights reserved. Built with ❤️ for free sharing.",
                 modalAddTitle: "Add New App / Document",
                 labelAppName: "App / Document Name",
                 labelCategory: "Category",
                 labelVersion: "Version / Size",
-                labelIcon: "Icon Emoji",
+                labelIcon: "Icon Image URL or Emoji",
                 labelUrl: "Download / File URL",
                 labelDesc: "Description",
                 btnCancel: "Cancel",
                 btnSave: "Save App",
-                modalContactTitle: "Contact Kakar",
+                modalContactTitle: "Contact Saad Kakar",
                 modalContactDesc: "Have a question or want to request an app? Send a message directly.",
                 labelYourName: "Your Name",
                 labelYourMsg: "Message",
@@ -230,31 +238,31 @@
                 downloadBtn: "Download APK"
             },
             ur: {
-                appTitle: "کاکڑ ایپس ہب",
+                appTitle: "سعد کاکڑ پیڈ ایپس",
                 appSubtitle: "مفت موبائل ایپس اور ٹولز",
                 langBtnText: "English",
                 contactBtn: "رابطہ کریں",
                 addAppBtn: "+ ایپ جوڑیں",
                 heroTitle: "مفت موبائل ایپس اور ٹولز تلاش اور ڈاؤن لوڈ کریں",
-                heroDesc: "کاکڑ کی طرف سے محفوظ APKs، یوٹیلیٹیز، پرو ٹولز اور اہم دستاویزات کا آپ کا بھروسہ مند پلیٹ فارم۔",
+                heroDesc: "سعد کاکڑ کی طرف سے محفوظ APKs، یوٹیلیٹیز، پرو ٹولز اور اہم دستاویزات کا آپ کا بھروسہ مند پلیٹ فارم۔",
                 searchPlaceholder: "ایپس یا ٹولز تلاش کریں...",
                 catAll: "سب",
                 catTools: "ٹولز",
                 catGames: "گیمز",
                 catProd: "پروڈکٹیویٹی",
                 catDocs: "دستاویزات",
-                emptyText: "آپ کی تلاش کے مطابق کوئی ایپ نہیں ملی۔",
-                footer: "© 2026 کاکڑ ایپس ہب۔ تمام حقوق محفوظ ہیں۔ مفت شیئرنگ کے لیے محبت کے ساتھ بنایا گیا۔",
+                emptyText: "کوئی ایپ موجود نہیں۔ اپنی پہلی ایپ شامل کرنے کے لیے '+ ایپ جوڑیں' پر کلک کریں!",
+                footer: "© 2026 سعد کاکڑ پیڈ ایپس۔ تمام حقوق محفوظ ہیں۔ مفت شیئرنگ کے لیے محبت کے ساتھ بنایا گیا۔",
                 modalAddTitle: "نیا ایپ یا دستاویز شامل کریں",
                 labelAppName: "ایپ یا دستاویز کا نام",
                 labelCategory: "زمرہ (Category)",
                 labelVersion: "ورژن / سائز",
-                labelIcon: "آئیکن ایموجی",
+                labelIcon: "آئیکن امیج لنک یا ایموجی",
                 labelUrl: "ڈاؤن لوڈ / فائل کا لنک",
                 labelDesc: "تفصیل",
                 btnCancel: "منسوخ کریں",
                 btnSave: "محفوظ کریں",
-                modalContactTitle: "کاکڑ سے رابطہ کریں",
+                modalContactTitle: "سعد کاکڑ سے رابطہ کریں",
                 modalContactDesc: "کوئی سوال ہے یا کوئی ایپ درکار ہے؟ براہ راست پیغام بھیجیں۔",
                 labelYourName: "آپ کا نام",
                 labelYourMsg: "پیغام",
@@ -262,6 +270,30 @@
                 downloadBtn: "ڈاؤن لوڈ APK"
             }
         };
+
+        function triggerDownload(appName, url) {
+            // Browser native download trigger with notification alert simulation
+            const a = document.createElement('a');
+            a.href = url;
+            a.target = '_blank';
+            a.download = appName + '.apk';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Show attractive on-screen notification toast
+            showToast(`📥 Downloading ${appName}... Check notification bar!`);
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-5 right-5 z-50 bg-blue-600 text-white px-4 py-3 rounded-2xl shadow-2xl text-xs font-semibold flex items-center space-x-2 animate-bounce";
+            toast.innerHTML = `<span>${message}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 4000);
+        }
 
         function renderApps() {
             const grid = document.getElementById('appsGrid');
@@ -284,11 +316,16 @@
             filtered.forEach(app => {
                 const card = document.createElement('div');
                 card.className = "bg-white dark:bg-cardBg p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition flex flex-col justify-between";
+                
+                let iconHtml = app.icon.startsWith('http') || app.icon.startsWith('data:') 
+                    ? `<img src="${app.icon}" class="w-12 h-12 object-cover rounded-xl" alt="icon">` 
+                    : `<span class="text-4xl p-2 bg-slate-100 dark:bg-slate-800 rounded-xl">${app.icon}</span>`;
+
                 card.innerHTML = `
                     <div>
                         <div class="flex items-start justify-between mb-3">
                             <div class="flex items-center space-x-3">
-                                <span class="text-4xl p-2 bg-slate-100 dark:bg-slate-800 rounded-xl">${app.icon}</span>
+                                ${iconHtml}
                                 <div>
                                     <h4 class="font-bold text-base">${app.name}</h4>
                                     <span class="text-xs px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium">${app.category}</span>
@@ -299,7 +336,7 @@
                     </div>
                     <div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
                         <span class="text-xs text-slate-400 font-mono">${app.version}</span>
-                        <a href="${app.url}" target="_blank" class="px-4 py-2 text-xs font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition shadow-sm">${translations[currentLang].downloadBtn}</a>
+                        <button onclick="triggerDownload('${app.name}', '${app.url}')" class="px-4 py-2 text-xs font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition shadow-sm">${translations[currentLang].downloadBtn}</button>
                     </div>
                 `;
                 grid.appendChild(card);
