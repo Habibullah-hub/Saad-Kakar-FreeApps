@@ -56,22 +56,8 @@
                 </button>
 
                 <!-- Add App Button -->
-                <button onclick="let p = prompt('Admin Password enter karein:'); if(p === '1234') { 
-    let choiceBox = document.createElement('div');
-    choiceBox.style.position = 'fixed';
-    choiceBox.style.top = '50%';
-    choiceBox.style.left = '50%';
-    choiceBox.style.transform = 'translate(-50%, -50%)';
-    choiceBox.style.background = '#1e293b';
-    choiceBox.style.padding = '20px';
-    choiceBox.style.borderRadius = '12px';
-    choiceBox.style.zIndex = '10000';
-    choiceBox.style.boxShadow = '0 10px 25px rgba(0,0,0,0.5)';
-    choiceBox.style.textAlign = 'center';
-    choiceBox.innerHTML = '<h3 style=\'color:white; margin-bottom:15px; font-family:sans-serif;\'>Admin Menu</h3><button onclick=\'openAddModal(); this.parentElement.remove();\' style=\'background:#059669; color:white; border:none; padding:10px 20px; border-radius:8px; margin-right:10px; font-weight:bold; cursor:pointer;\'>Add File</button><button onclick=\'let q = prompt(\"Jis app ko delete karna hai uska naam likhein:\"); if(q){ let apps = JSON.parse(localStorage.getItem(\"saad_apps\") || \"[]\"); let filtered = apps.filter(a => a.name.toLowerCase() !== q.toLowerCase()); localStorage.setItem(\"saad_apps\", JSON.stringify(filtered)); location.reload(); alert(\"App kamyabi se delete ho gayi!\"); } this.parentElement.remove();\' style=\'background:#dc2626; color:white; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer;\'>Delete File</button><br><button onclick=\'this.parentElement.remove();\' style=\'background:transparent; color:#94a3b8; border:none; margin-top:15px; cursor:pointer;\'>Cancel</button>';
-    document.body.appendChild(choiceBox);
-} else { alert('Ghalat Password!'); }" class="inline-flex items-center px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition shadow-sm add-app-btn-text">KAKAR</button>
-            </button>
+                <button onclick="let p=prompt('Admin Password:'); if(p==='1234'){let d=document.createElement('div');d.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#1e293b;padding:20px;border-radius:12px;z-index:10000;box-shadow:0 10px 25px rgba(0,0,0,0.5);text-align:center;color:white;font-family:sans-serif;';d.innerHTML='<h3 style=\'margin-bottom:15px;\'>Admin Menu</h3><button onclick=\'openAddModal();this.parentElement.remove();\' style=\'background:#059669;color:white;border:none;padding:10px 20px;border-radius:8px;margin:5px;cursor:pointer;font-weight:bold;\'>Add File</button><button onclick=\'let q=prompt(\"Jis app ko delete karna hai uska naam likhein:\");if(q){let apps=JSON.parse(localStorage.getItem(\"saad_apps\")||\"[]\");let f=apps.filter(a=>a.name.toLowerCase()!==q.toLowerCase());localStorage.setItem(\"saad_apps\",JSON.stringify(f));location.reload();alert(\"App delete ho gayi!\");}this.parentElement.remove();\' style=\'background:#dc2626;color:white;border:none;padding:10px 20px;border-radius:8px;margin:5px;cursor:pointer;font-weight:bold;\'>Delete File</button><br><button onclick=\'this.parentElement.remove();\' style=\'background:transparent;color:#94a3b8;border:none;margin-top:10px;cursor:pointer;\'>Cancel</button>';document.body.appendChild(d);}else{alert('Ghalat Password!');}" class="inline-flex items-center px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition shadow-sm add-app-btn-text">KAKAR</button>
+
             </div>
         </div>
     </header>
