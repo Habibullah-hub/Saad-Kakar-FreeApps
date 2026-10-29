@@ -57,7 +57,7 @@
         </main>
     </div>
 
-    <!-- Admin Choices Modal with Dropdown / Select Option -->
+    <!-- Admin Choices Modal with Dropdown -->
     <div id="adminModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
         <div class="bg-[#1f1f1f] border border-[#333] rounded-2xl p-6 w-full max-w-sm text-center">
             <h3 class="text-lg font-bold mb-4">KAKAR Admin Control</h3>
@@ -66,6 +66,7 @@
                     <label class="block text-xs text-gray-400 mb-1">Select Admin Action:</label>
                     <select id="adminActionSelect" class="w-full bg-[#121212] border border-[#333] rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-emerald-500">
                         <option value="upload">Upload File (Add App)</option>
+                        <option value="edit">Edit File (Update App)</option>
                         <option value="delete">Delete File (Remove App)</option>
                         <option value="ads">Manage Ads</option>
                     </select>
@@ -78,13 +79,13 @@
         </div>
     </div>
 
-    <!-- Add App Modal -->
+    <!-- Add / Edit App Modal -->
     <div id="addModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
         <div class="bg-[#1f1f1f] border border-[#333] rounded-2xl max-w-md w-full p-6 text-left">
-            <h3 class="text-lg font-bold mb-4">Upload New File / App</h3>
+            <h3 id="modalTitle" class="text-lg font-bold mb-4">Upload New File / App</h3>
             <form id="addAppForm" onsubmit="saveApp(event)" class="space-y-3 text-xs">
                 <div>
-                    <label class="block text-gray-400 mb-1">App Name</label>
+                    <label class="block text-gray-400 mb-1">App Name (Exact name needed for editing)</label>
                     <input type="text" id="appName" required class="w-full bg-[#121212] border border-[#333] rounded-lg p-2 text-white focus:outline-none focus:border-emerald-500">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
@@ -102,15 +103,15 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-gray-400 mb-1">Upload App Logo / Image</label>
+                    <label class="block text-gray-400 mb-1">Upload App Logo / Image (Optional)</label>
                     <input type="file" id="appImageFile" accept="image/*" class="w-full bg-[#121212] border border-[#333] rounded-lg p-1.5 text-gray-300">
                 </div>
                 <div>
-                    <label class="block text-gray-400 mb-1">Download URL</label>
+                    <label class="block text-gray-400 mb-1">Download URL (Direct Link)</label>
                     <input type="url" id="appUrl" required placeholder="https://..." class="w-full bg-[#121212] border border-[#333] rounded-lg p-2 text-white focus:outline-none focus:border-emerald-500">
                 </div>
                 <div>
-                    <label class="block text-gray-400 mb-1">Description</label>
+                    <label class="block text-gray-400 mb-1">Description (Paid / Pro info)</label>
                     <textarea id="appDesc" rows="2" required class="w-full bg-[#121212] border border-[#333] rounded-lg p-2 text-white focus:outline-none focus:border-emerald-500"></textarea>
                 </div>
                 <div class="flex justify-end space-x-2 pt-2">
@@ -271,9 +272,28 @@
             const action = document.getElementById('adminActionSelect').value;
             closeAdminModal();
             if (action === 'upload') {
+                document.getElementById('modalTitleinnerText = "Upload New File / App"');
+                document.getElementById('addAppForm').reset();
                 document.getElementById('addModal').classList.remove('hidden');
+            } else if (action === 'edit') {
+                let targetName = prompt('Enter the exact name of the app you want to edit:');
+                if (targetName) {
+                    let apps = getApps();
+                    let existingApp = apps.find(a => a.name.toLowerCase() === targetName.toLowerCase());
+                    if (existingApp) {
+                        document.getElementById('appName').value = existingApp.name;
+                        document.getElementById('appCategory').value = existingApp.category;
+                        document.getElementById('appMeta').value = existingApp.meta;
+                        document.getElementById('appUrl').value = existingApp.url;
+                        document.getElementById('appDesc').value = existingApp.desc;
+                        document.getElementById('modalTitle').innerText = "Edit Existing App";
+                        document.getElementById('addModal').classList.remove('hidden');
+                    } else {
+                        alert('App not found with this name!');
+                    }
+                }
             } else if (action === 'delete') {
-                let q = document.getElementById('searchInput').value.trim() || prompt('Enter the exact app name to delete:');
+                let q = prompt('Enter the exact app name to delete:');
                 if (q) {
                     let apps = getApps();
                     let filtered = apps.filter(a => a.name.toLowerCase() !== q.toLowerCase());
@@ -297,9 +317,10 @@
             e.preventDefault();
             const fileInput = document.getElementById('appImageFile');
             const file = fileInput.files[0];
+            const appNameInput = document.getElementById('appName').value;
 
             const appData = {
-                name: document.getElementById('appName').value,
+                name: appNameInput,
                 category: document.getElementById('appCategory').value,
                 meta: document.getElementById('appMeta').value,
                 url: document.getElementById('appUrl').value,
@@ -307,26 +328,36 @@
                 image: ''
             };
 
+            let apps = getApps();
+            let existingIndex = apps.findIndex(a => a.name.toLowerCase() === appNameInput.toLowerCase());
+
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(evt) {
                     appData.image = evt.target.result;
-                    commitAppSave(appData);
+                    commitAppSave(appData, existingIndex, apps);
                 };
                 reader.readAsDataURL(file);
             } else {
-                commitAppSave(appData);
+                if (existingIndex !== -1) {
+                    appData.image = apps[existingIndex].image; // Keep old image if not updated
+                }
+                commitAppSave(appData, existingIndex, apps);
             }
         }
 
-        function commitAppSave(appData) {
-            let apps = getApps();
-            apps.unshift(appData);
+        function commitAppSave(appData, existingIndex, apps) {
+            if (existingIndex !== -1) {
+                apps[existingIndex] = appData; // Update existing
+                alert('App successfully updated!');
+            } else {
+                apps.unshift(appData); // Add new
+                alert('App successfully added!');
+            }
             localStorage.setItem('saad_apps', JSON.stringify(apps));
             document.getElementById('addAppForm').reset();
             closeAddModal();
             renderApps();
-            alert('App successfully added!');
         }
 
         function closeAdsModal() {
